@@ -1,26 +1,28 @@
 import matplotlib.pyplot as plt
 
-def calculate_total_expenses(expenses_dict):
+def plot_expenses(expenses):
     """
-    Calculate total expenses from expense dictionary
+    Plot a pie chart of expenses.
+    Only show categories with >0 values to avoid overlapping labels.
+    Returns None if total expenses = 0.
     """
-    return sum(expenses_dict.values())
+    # Filter out zero values
+    filtered_expenses = {k: v for k, v in expenses.items() if v > 0}
+    total = sum(filtered_expenses.values())
 
-
-def plot_expenses(expenses_dict):
-    """
-    Generate a pie chart for expense distribution
-    """
-    categories = list(expenses_dict.keys())
-    amounts = list(expenses_dict.values())
+    if total == 0:
+        return None  # Don't plot chart if no expenses
 
     fig, ax = plt.subplots()
     ax.pie(
-        amounts,
-        labels=categories,
+        filtered_expenses.values(),
+        labels=filtered_expenses.keys(),
         autopct='%1.1f%%',
         startangle=90
     )
-    ax.axis('equal')  # Makes the pie chart circular
-
+    ax.axis('equal')
+    plt.title("Expenses Distribution")
     return fig
+
+
+
