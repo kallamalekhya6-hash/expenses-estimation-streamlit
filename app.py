@@ -34,5 +34,5 @@ if st.button("Estimate Expenses"):
         st.info("No expenses entered yet. Pie chart will appear when expenses > 0.")
 
 st.write("\n---\n")
-st.write("App by: **Alekhya Buthukuri**")
+st.write("App by: ** kallam Alekhya **")
 
